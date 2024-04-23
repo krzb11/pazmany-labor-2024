@@ -11,7 +11,6 @@ public class ExampleController {
 
 	/**
 	 * Provides an OK string
-	 *
 	 * @return An OK string
 	 */
 
