@@ -20,7 +20,7 @@ You can build and run this project as:
 - in console ./mvnw spring-boot:run 
 - if you want to run in docker (in `backend` folder): `docker run --rm -v $(pwd):/app -v $(pwd)/.m2:/.m2 -w /app -p 8080:8080 -u $(id -u):$(id -g) --name example-be --network example_network eclipse-temurin:21-jdk ./mvnw spring-boot:run`
 
-OK URL: http://localhost:8080/api/OK
+OK URL: http://localhost:8080/api/ok
 H2 database console URL: http://localhost:8080/h2-console
 (all settings can be found in the application.properties file)
 

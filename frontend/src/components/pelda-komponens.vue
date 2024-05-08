@@ -19,7 +19,7 @@ getAFact();
 
 const backendStatus = ref('unknown');
 function checkBackend() {
-  axios.get('/api/OK').then(result=>{
+  axios.get('/api/ok').then(result=>{
     backendStatus.value = result.data;
   }).catch(error => {
     console.error('cannot get backend OK api endpoint', error);
