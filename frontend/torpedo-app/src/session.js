@@ -35,3 +35,15 @@ export function getSessionUsername() {
         }
     }
 }
+
+export function getSessionKey() {
+    if (localStorage.getItem("torpedo_session")) {
+        try {
+            let session =  JSON.parse(localStorage.getItem("torpedo_session"));
+            return session.sessionkey;
+        } catch (error) {
+            console.log(error);
+            return('');
+        }
+    }
+}

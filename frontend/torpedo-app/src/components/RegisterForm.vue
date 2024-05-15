@@ -1,6 +1,6 @@
 <template>
     <section class="container">
-        <form @submit.prevent="loginUser">
+        <form @submit.prevent="registerUser">
             <div class="field">
                 <div class="control has-icons-left has-icons-right">
                     <input class="input" type="text" placeholder="Username" v-on:input="checkInputs('username')" v-model.trim="username" value="{{ username }}" required>
@@ -155,7 +155,7 @@ export default {
     routeLogin() {
         router.push('/login');
     },
-    async loginUser() {
+    async registerUser() {
         if (!this.checkInputs()) {
             return;
         }
