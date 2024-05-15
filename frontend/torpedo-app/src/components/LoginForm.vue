@@ -29,7 +29,7 @@
             
             <div class="field">
                 <div class="control">
-                    <button class="button is-link" type="submit"> Login </button>
+                    <button class="button is-link" type="submit"> Log in </button>
                 </div>
             </div>        
         </form>
@@ -41,18 +41,16 @@ import sha256 from 'crypto-js/sha256';
 import * as Session from '../session.js';
 import router from '@/router/index.js';
 
-console.log(Session.getSessionUsername());
-
 export default {
   data() {
     return {
       username: Session.getSessionUsername(),
       password: '',
-      error: '',
       username_error: false,
       password_error: false,
       username_success: false,
-      password_success: false
+      password_success: false,
+      error: ''
     };
   },
   methods: {
