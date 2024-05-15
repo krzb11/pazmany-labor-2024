@@ -12,5 +12,12 @@
 </template>
 
 <script setup>
+    import * as Session from '../session.js';
     import LoginForm from '../components/LoginForm.vue';
+    import router from '@/router/index.js';
+
+    if (Session.hasActiveSession()) {
+        router.push('/');
+    }
+
 </script>

@@ -13,6 +13,19 @@
                 </div>
                 <p class="help is-error" v-if="username_error"> {{ username_error }} </p>
             </div>
+
+            <div class="field">
+                <div class="control has-icons-left has-icons-right">
+                    <input class="input" type="text" placeholder="Email" v-on:input="checkInputs('email')" v-model.trim="email" value="{{ email }}" required>
+                    <span class="icon is-small is-left">
+                        <i class="fa fa-at"></i>
+                    </span>
+                    <span class="icon is-small is-right">
+                        <i class="fa fa-check" v-if="email_success"></i>
+                    </span>
+                </div>
+                <p class="help is-error" v-if="username_error"> {{ username_error }} </p>
+            </div>
             
             <div class="field">
                 <div class="control has-icons-left has-icons-right">
@@ -41,12 +54,12 @@ import sha256 from 'crypto-js/sha256';
 import * as Session from '../session.js';
 import router from '@/router/index.js';
 
-console.log(Session.getSessionUsername());
+let username = Session.getSessionUsername();
 
 export default {
   data() {
     return {
-      username: Session.getSessionUsername(),
+      username,
       password: '',
       error: '',
       username_error: false,
