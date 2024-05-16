@@ -58,33 +58,49 @@ export default {
             username: Session.getSessionUsername(),
             loggedin: Session.hasActiveSession(),
             menuopen: false,
+            polling: null,
             error: ''
         };
     },
     methods: {
+        update() {
+            this.polling = setInterval(() => { this.loggedin = Session.hasActiveSession(), this.username = Session.getSessionUsername() }, 1000);
+        },
         toggleMenu() {
             this.menuopen = !this.menuopen;
+            this.update();
         },
         routeHome() {
             this.menuopen = false;
             router.push('/');
+            this.update();
         },
         routeLeaderboard() {
             this.menuopen = false;
             router.push('/leaderboard');
+            this.update();
         },
         routeLogin() {
             this.menuopen = false;
             router.push('/login');
+            this.update();
         },
         routeRegister() {
             this.menuopen = false;
             router.push('/register');
+            this.update();
         },
         routeLogout() {
             this.menuopen = false;
             router.push('/logout');
+            this.update();
         }
+    },
+    generated() {
+        this.update();
+    },
+    beforeUnmount() {
+        clearInterval(this.polling);
     }
 }
 </script>

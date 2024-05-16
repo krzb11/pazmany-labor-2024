@@ -1,0 +1,246 @@
+{
+	"info": {
+		"_postman_id": "0882525e-e69a-48a3-afb7-2de30e56f1e4",
+		"name": "torpedo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34954571"
+	},
+	"item": [
+		{
+			"name": "leaderboard",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"username\": \"abc12\", \"sessionkey\": \"019833u08172701abs\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/leaderboard",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"leaderboard"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Default",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"username\": \"abc12\", \"sessionkey\": \"019833u08172701abs\"}"
+						},
+						"url": {
+							"raw": "{{url}}/leaderboard",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"leaderboard"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": ""
+						}
+					],
+					"cookie": [],
+					"body": "[\r\n    {\"position\": 1, \"username\": \"usr_1\", \"points\": 100},\r\n    {\"position\": 2, \"username\": \"usr_2\", \"points\": 90},\r\n    {\"position\": 3, \"username\": \"usr_3\", \"points\": 80},\r\n    {\"position\": 4, \"username\": \"usr_4\", \"points\": 70},\r\n    {\"position\": 5, \"username\": \"usr_5\", \"points\": 60},\r\n    {\"position\": 6, \"username\": \"usr_6\", \"points\": 50},\r\n    {\"position\": 7, \"username\": \"usr_7\", \"points\": 40},\r\n    {\"position\": 8, \"username\": \"usr_8\", \"points\": 30},\r\n    {\"position\": 9, \"username\": \"usr_9\", \"points\": 20},\r\n    {\"position\": 10, \"username\": \"usr_10\", \"points\": 10},\r\n    {\"position\": 23, \"username\": \"abc12\", \"points\": 1}\r\n]"
+				}
+			]
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"username\": \"abc12\", \"password\": \"7721a00381081809ebf94ee9255892c887b82eea98bc1fa04b367d1ee0a26cc7\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/login",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Default",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{username: \"abc12\", password: \"7721a00381081809ebf94ee9255892c887b82eea98bc1fa04b367d1ee0a26cc7\"}"
+						},
+						"url": {
+							"raw": "{{url}}/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": ""
+						}
+					],
+					"cookie": [],
+					"body": "{\"username\": \"abc12\", \"sessionkey\": \"019833u08172701abs\", \"expire\": \"2024-05-18T00:00:00.000Z\"}"
+				}
+			]
+		},
+		{
+			"name": "login Copy",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"username\": \"abc12\", \"password\": \"7721a00381081809ebf94ee9255892c887b82eea98bc1fa04b367d1ee0a26cc7\", \"email\": \"your.mail@net.com\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/register",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Default",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"username\": \"abc12\", \"password\": \"7721a00381081809ebf94ee9255892c887b82eea98bc1fa04b367d1ee0a26cc7\", \"email\": \"your.mail@net.com\"}"
+						},
+						"url": {
+							"raw": "{{url}}/register",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"register"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": ""
+						}
+					],
+					"cookie": [],
+					"body": "{\"username\": \"abc12\", \"sessionkey\": \"019833u08172701abs\", \"expire\": \"2024-05-18T00:00:00.000Z\"}"
+				}
+			]
+		},
+		{
+			"name": "logout",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"username\": \"abc12\", \"sessionkey\": \"019833u08172701abs\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/logout",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"logout"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Default",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"username\": \"abc12\", \"sessionkey\": \"019833u08172701abs\"}"
+						},
+						"url": {
+							"raw": "{{url}}/logout",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"logout"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "https://4eba4334-c541-4d2d-9e97-714afba4d251.mock.pstmn.io"
+		}
+	]
+}
