@@ -9,12 +9,11 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 @ControllerAdvice
-public class RestExceptionHandler extends ResponseEntityExceptionHandler {
+public class RestExceptionHandler {
 
-    @ExceptionHandler(value = {Exception.class})
-    protected ResponseEntity<Object> handleConflict(RuntimeException ex, WebRequest request) {
-        return handleExceptionInternal(ex, "An error occurred: " + ex.getMessage(),
-                new HttpHeaders(), HttpStatus.CONFLICT, request);
+    @ExceptionHandler(value = Exception.class)
+    public ResponseEntity<Object> handleAnyException(Exception ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
 

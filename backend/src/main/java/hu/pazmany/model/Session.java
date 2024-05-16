@@ -3,33 +3,51 @@ package hu.pazmany.model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
-import org.springframework.data.annotation.Id;
-
 import java.time.Instant;
-import java.time.LocalDateTime;
 
 @Entity
 public class Session {
-    @jakarta.persistence.Id
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String sessionKey;
-    private LocalDateTime expiration;
+    private Instant expiration;
     @ManyToOne
     private User user;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
+    // Getters
     public Long getId() {
         return id;
     }
 
-    public Instant getExpiration() {
-
+    public String getSessionKey() {
+        return sessionKey;
     }
-    // standard getters and setters
+
+    public Instant getExpiration() {
+        return expiration;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    // Setters
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setSessionKey(String sessionKey) {
+        this.sessionKey = sessionKey;
+    }
+
+    public void setExpiration(Instant expiration) {
+        this.expiration = expiration;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }

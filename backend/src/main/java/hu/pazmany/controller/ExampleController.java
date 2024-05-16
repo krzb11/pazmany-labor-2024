@@ -2,6 +2,7 @@ package hu.pazmany.controller;
 
 import hu.pazmany.model.Session;
 import hu.pazmany.model.User;
+import hu.pazmany.model.UserScore;
 import hu.pazmany.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -32,18 +35,23 @@ public class ExampleController {
 			return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
 					.body(Map.of("email", user.getEmail(), "error", "email already taken"));
 		}
-		// Register user logic here
-		return ResponseEntity.ok(Map.of("username", user.getUsername(), "sessionkey", "generatedSessionKey", "expire", "timestamp"));
+		// Assuming registration creates a new user and session key
+		User newUser = userService.registerNewUser(user); // Method to be implemented
+		String sessionKey = userService.generateSessionKey(newUser);
+		return ResponseEntity.ok(Map.of("username", newUser.getUsername(), "sessionkey", sessionKey, "expire", "24 hours from now"));
 	}
 
 	@PostMapping("/login")
 	public ResponseEntity<?> login(@RequestBody User user) {
 		Optional<User> existingUser = userService.validateUserCredentials(user.getUsername(), user.getPassword());
 		if (existingUser.isEmpty()) {
+			if (!userService.isUserExists(user.getUsername())) {
+				return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+						.body(Map.of("username", user.getUsername(), "error", "username is unknown"));
+			}
 			return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-					.body(Map.of("error", "Invalid username or password"));
+					.body(Map.of("error", "password is wrong"));
 		}
-		// Assume generateSessionKey creates a new session key
 		String sessionKey = userService.generateSessionKey(existingUser.get());
 		return ResponseEntity.ok(Map.of("username", user.getUsername(), "sessionkey", sessionKey, "expire", "24 hours from now"));
 	}
@@ -60,12 +68,14 @@ public class ExampleController {
 	@PostMapping("/leaderboard")
 	public ResponseEntity<?> getLeaderboard(@RequestBody Map<String, String> request) {
 		Optional<Session> validSession = userService.getSessionByKey(request.get("sessionkey"));
-		if (validSession.isEmpty() || validSession.get().getExpiration().isBefore(Instant.from(LocalDateTime.now()))) {
-			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("error", "Session is expired or invalid"));
+		if (validSession.isEmpty() || validSession.get().getExpiration().isBefore(Instant.now())) {
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("error", "Session is expired"));
 		}
-
 		List<UserScore> leaderboard = userService.getTopScores();
-		return ResponseEntity.ok(leaderboard);
+		Optional<UserScore> requestingUserScore = userService.getUserScore(request.get("username"));
+		List<UserScore> result = new ArrayList<>(leaderboard);
+		requestingUserScore.ifPresent(score -> result.add(score)); // Append if not in top 10
+		return ResponseEntity.ok(result);
 	}
 
 	// Additional endpoints for logout, leaderboard, etc.
