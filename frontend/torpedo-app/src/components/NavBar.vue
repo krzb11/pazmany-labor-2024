@@ -73,22 +73,27 @@ export default {
         routeHome() {
             this.menuopen = false;
             router.push('/');
+            this.update();
         },
         routeLeaderboard() {
             this.menuopen = false;
             router.push('/leaderboard');
+            this.update();
         },
         routeLogin() {
             this.menuopen = false;
             router.push('/login');
+            this.update();
         },
         routeRegister() {
             this.menuopen = false;
             router.push('/register');
+            this.update();
         },
         routeLogout() {
             this.menuopen = false;
             router.push('/logout');
+            this.update();
         }
     },
     generated() {
