@@ -58,12 +58,17 @@ export default {
             username: Session.getSessionUsername(),
             loggedin: Session.hasActiveSession(),
             menuopen: false,
+            polling: null,
             error: ''
         };
     },
     methods: {
+        update() {
+            this.polling = setInterval(() => { this.loggedin = Session.hasActiveSession(), this.username = Session.getSessionUsername() }, 1000);
+        },
         toggleMenu() {
             this.menuopen = !this.menuopen;
+            this.update();
         },
         routeHome() {
             this.menuopen = false;
@@ -85,6 +90,12 @@ export default {
             this.menuopen = false;
             router.push('/logout');
         }
+    },
+    generated() {
+        this.update();
+    },
+    beforeUnmount() {
+        clearInterval(this.polling);
     }
 }
 </script>
